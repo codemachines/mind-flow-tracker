@@ -114,10 +114,11 @@ export default function Onboarding({ onOnboardingComplete }) {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                <label htmlFor="onboarding-name" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                   What should we call you? (Name)
                 </label>
                 <input
+                  id="onboarding-name"
                   type="text"
                   value={userName}
                   onChange={(e) => setUserName(e.target.value)}
@@ -129,10 +130,11 @@ export default function Onboarding({ onOnboardingComplete }) {
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                  <label htmlFor="onboarding-age" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                     Age
                   </label>
                   <input
+                    id="onboarding-age"
                     type="number"
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
@@ -145,10 +147,11 @@ export default function Onboarding({ onOnboardingComplete }) {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                  <label htmlFor="onboarding-gender" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                     Gender
                   </label>
                   <select
+                    id="onboarding-gender"
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                     className="w-full px-4 py-2.5 rounded-xl glass-input text-xs md:text-sm"
@@ -164,10 +167,11 @@ export default function Onboarding({ onOnboardingComplete }) {
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                <label htmlFor="onboarding-birthdate" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                   Birth Date
                 </label>
                 <input
+                  id="onboarding-birthdate"
                   type="date"
                   value={birthDate}
                   onChange={(e) => setBirthDate(e.target.value)}
@@ -193,10 +197,11 @@ export default function Onboarding({ onOnboardingComplete }) {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                <label htmlFor="onboarding-target-exam" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                   Target Exam
                 </label>
                 <select
+                  id="onboarding-target-exam"
                   value={targetExam}
                   onChange={(e) => setTargetExam(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl glass-input text-xs md:text-sm"
@@ -214,10 +219,11 @@ export default function Onboarding({ onOnboardingComplete }) {
 
               {targetExam === 'Other' && (
                 <div className="animate-slideDown">
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                  <label htmlFor="onboarding-other-exam" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                     Specify Exam Name
                   </label>
                   <input
+                    id="onboarding-other-exam"
                     type="text"
                     value={otherExam}
                     onChange={(e) => setOtherExam(e.target.value)}
@@ -245,10 +251,11 @@ export default function Onboarding({ onOnboardingComplete }) {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                <label htmlFor="onboarding-reminder" className="block text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
                   Daily Check-in Reminder Time
                 </label>
                 <input
+                  id="onboarding-reminder"
                   type="time"
                   value={dailyReminder}
                   onChange={(e) => setDailyReminder(e.target.value)}

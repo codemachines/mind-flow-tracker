@@ -167,6 +167,7 @@ export default function ChatBot({ settings }) {
             placeholder={`Ask Dr. Seraphina... (e.g. "I'm stressed about ${settings.targetExam}")`}
             className="flex-1 px-4 py-2.5 rounded-xl glass-input text-xs md:text-sm"
             disabled={isTyping}
+            aria-label="Ask Dr. Seraphina"
             required
           />
           <button

@@ -123,6 +123,8 @@ export default function Journal({ logs, onLogsChange, settings }) {
               <div className="flex items-center gap-3">
                 <span className="text-xs text-slate-500">Overwhelmed</span>
                 <input
+                  id="mood-rating"
+                  aria-label="Current State Rating"
                   type="range"
                   min="1"
                   max="10"
@@ -282,7 +284,11 @@ export default function Journal({ logs, onLogsChange, settings }) {
                 <div className="space-y-1.5">
                   {analysisResult.actionPlan.map((act, i) => (
                     <div key={i} className="flex items-start gap-2.5 text-xs text-slate-300 leading-normal">
-                      <input type="checkbox" className="mt-0.5 h-3.5 w-3.5 rounded border-slate-700 bg-navy-900 text-serene-500 focus:ring-serene-500/20 cursor-pointer" />
+                      <input 
+                        type="checkbox" 
+                        className="mt-0.5 h-3.5 w-3.5 rounded border-slate-700 bg-navy-900 text-serene-500 focus:ring-serene-500/20 cursor-pointer" 
+                        aria-label={act}
+                      />
                       <span>{act}</span>
                     </div>
                   ))}

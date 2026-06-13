@@ -349,6 +349,7 @@ export default function Exercises() {
                 placeholder="e.g. I am not ready for the mock physics exam..."
                 className="flex-1 px-4 py-2 rounded-xl glass-input text-xs md:text-sm"
                 maxLength={80}
+                aria-label="Stressful exam thought"
               />
               <button
                 type="submit"

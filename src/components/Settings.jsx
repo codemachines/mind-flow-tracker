@@ -104,10 +104,11 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
 
           <form onSubmit={handleSaveSettings} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+              <label htmlFor="settings-name" className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
                 Your Name
               </label>
               <input
+                id="settings-name"
                 type="text"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
@@ -119,10 +120,11 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+                <label htmlFor="settings-age" className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
                   Age
                 </label>
                 <input
+                  id="settings-age"
                   type="number"
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
@@ -134,10 +136,11 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+                <label htmlFor="settings-gender" className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
                   Gender
                 </label>
                 <select
+                  id="settings-gender"
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
                   className="w-full px-4 py-2.5 rounded-xl glass-input text-sm"
@@ -153,10 +156,11 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+              <label htmlFor="settings-birthdate" className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
                 Birth Date
               </label>
               <input
+                id="settings-birthdate"
                 type="date"
                 value={birthDate}
                 onChange={(e) => setBirthDate(e.target.value)}
@@ -166,10 +170,11 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+              <label htmlFor="settings-target-exam" className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
                 Target Exam / Board Exam
               </label>
               <select
+                id="settings-target-exam"
                 value={targetExam}
                 onChange={(e) => setTargetExam(e.target.value)}
                 className="w-full px-4 py-2.5 rounded-xl glass-input text-sm"
@@ -187,10 +192,11 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
 
             {targetExam === 'Other' && (
               <div className="animate-slideDown">
-                <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+                <label htmlFor="settings-other-exam" className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
                   Specify Exam Name
                 </label>
                 <input
+                  id="settings-other-exam"
                   type="text"
                   value={otherExam}
                   onChange={(e) => setOtherExam(e.target.value)}
@@ -202,12 +208,13 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
             )}
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+              <label htmlFor="settings-reminder" className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
                 Daily Wellness Reminder Time
               </label>
               <div className="flex items-center gap-2">
                 <Bell size={16} className="text-slate-400" />
                 <input
+                  id="settings-reminder"
                   type="time"
                   value={dailyReminder}
                   onChange={(e) => setDailyReminder(e.target.value)}
@@ -217,10 +224,11 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+              <label htmlFor="settings-api-key" className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
                 Gemini API Key (Optional)
               </label>
               <input
+                id="settings-api-key"
                 type="password"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
