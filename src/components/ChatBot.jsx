@@ -98,7 +98,7 @@ export default function ChatBot({ settings }) {
           const isUser = msg.sender === 'user';
           return (
             <div
-              key={index}
+              key={`${msg.timestamp}-${index}`}
               className={`flex items-end gap-2.5 ${isUser ? 'justify-end' : 'justify-start'}`}
             >
               {/* Avatar for bot */}

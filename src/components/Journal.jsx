@@ -247,7 +247,7 @@ export default function Journal({ logs, onLogsChange, settings }) {
                 <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Stressors Detected:</span>
                 <div className="flex flex-wrap gap-1.5">
                   {analysisResult.stressors.map((st, i) => (
-                    <span key={i} className="text-xs bg-navy-900 border border-navy-800 text-slate-300 px-2.5 py-1 rounded-lg">
+                    <span key={`stressor-${st}-${i}`} className="text-xs bg-navy-900 border border-navy-800 text-slate-300 px-2.5 py-1 rounded-lg">
                       {st}
                     </span>
                   ))}
@@ -262,7 +262,7 @@ export default function Journal({ logs, onLogsChange, settings }) {
                   </span>
                   <ul className="list-disc pl-4 text-xs text-slate-300 space-y-1">
                     {analysisResult.cognitiveDistortions.map((dis, i) => (
-                      <li key={i}>{dis}</li>
+                      <li key={`distortion-${dis}-${i}`}>{dis}</li>
                     ))}
                   </ul>
                 </div>
@@ -283,7 +283,7 @@ export default function Journal({ logs, onLogsChange, settings }) {
                 <span className="text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Suggested Action Steps:</span>
                 <div className="space-y-1.5">
                   {analysisResult.actionPlan.map((act, i) => (
-                    <div key={i} className="flex items-start gap-2.5 text-xs text-slate-300 leading-normal">
+                    <div key={`act-${act}-${i}`} className="flex items-start gap-2.5 text-xs text-slate-300 leading-normal">
                       <input 
                         type="checkbox" 
                         className="mt-0.5 h-3.5 w-3.5 rounded border-slate-700 bg-navy-900 text-serene-500 focus:ring-serene-500/20 cursor-pointer" 
@@ -386,7 +386,7 @@ export default function Journal({ logs, onLogsChange, settings }) {
                             <span className="text-[9px] text-slate-500 uppercase tracking-widest font-bold block mb-1">Feelings:</span>
                             <div className="flex flex-wrap gap-1">
                               {log.feelings.map((f, i) => (
-                                <span key={i} className="text-[10px] bg-navy-950 border border-navy-800 text-slate-300 px-2 py-0.5 rounded-md">
+                                <span key={`feeling-${f}-${i}`} className="text-[10px] bg-navy-950 border border-navy-800 text-slate-300 px-2 py-0.5 rounded-md">
                                   {f}
                                 </span>
                               ))}
@@ -409,7 +409,7 @@ export default function Journal({ logs, onLogsChange, settings }) {
                               <span className="text-[9px] text-red-400 font-bold uppercase tracking-wider block mb-0.5">Mind distortion:</span>
                               <ul className="list-disc pl-3.5 space-y-0.5 text-[11px]">
                                 {log.analysis.cognitiveDistortions.map((dis, idx) => (
-                                  <li key={idx}>{dis}</li>
+                                  <li key={`hist-dist-${dis}-${idx}`}>{dis}</li>
                                 ))}
                               </ul>
                             </div>
@@ -427,7 +427,7 @@ export default function Journal({ logs, onLogsChange, settings }) {
                               <span className="text-[9px] text-slate-500 uppercase tracking-widest font-bold block mb-1">Coping Steps:</span>
                               <ul className="list-disc pl-3.5 space-y-1 text-slate-300 text-[11px]">
                                 {log.analysis.actionPlan.map((act, idx) => (
-                                  <li key={idx}>{act}</li>
+                                  <li key={`hist-act-${act}-${idx}`}>{act}</li>
                                 ))}
                               </ul>
                             </div>

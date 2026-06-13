@@ -164,13 +164,13 @@ export default function Playlist({ logs }) {
                 No songs match the language filter. Try switching filters.
               </div>
             ) : (
-              filteredSongs.map((song, i) => {
+              filteredSongs.map((song) => {
                 const songLinks = getSongLinks(song);
                 const isActive = activePlayTrack?.title === song.title;
 
                 return (
                   <div
-                    key={i}
+                    key={song.title}
                     onClick={() => handleMockPlay(song)}
                     className={`p-4 rounded-xl border transition-all duration-200 cursor-pointer flex flex-col md:flex-row justify-between gap-4 ${
                       isActive 

@@ -397,8 +397,8 @@ export default function Exercises() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {YOUTUBE_RESOURCES.map((res, index) => (
-              <div key={index} className="glass-panel rounded-2xl p-5 space-y-4 flex flex-col justify-between">
+            {YOUTUBE_RESOURCES.map((res) => (
+              <div key={res.embedId} className="glass-panel rounded-2xl p-5 space-y-4 flex flex-col justify-between">
                 <div className="space-y-2">
                   <div className="video-container">
                     <iframe

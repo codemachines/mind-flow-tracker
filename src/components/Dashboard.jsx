@@ -420,11 +420,11 @@ export default function Dashboard({ logs, exams, settings, setActiveTab }) {
                     />
                     <Bar dataKey="Stress" fill="#6366f1" radius={[4, 4, 0, 0]} maxBarSize={30}>
                       {/* Highlight Sunday if it's highest */}
-                      {dayOfWeekData.map((entry, index) => {
+                      {dayOfWeekData.map((entry) => {
                         const isSunday = entry.name === 'Sun';
                         return (
                           <Area 
-                            key={`cell-${index}`} 
+                            key={`cell-${entry.name}`} 
                             fill={isSunday ? '#a78bfa' : '#6366f1'} 
                           />
                         );
@@ -456,7 +456,7 @@ export default function Dashboard({ logs, exams, settings, setActiveTab }) {
                 <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400">Detected Stress Triggers</h4>
                 <div className="space-y-2.5">
                   {aiInsights.patterns.map((pattern, index) => (
-                    <div key={index} className="flex gap-3 text-xs md:text-sm text-slate-300 leading-relaxed bg-navy-900/40 p-3 rounded-xl border border-navy-800/80">
+                    <div key={pattern} className="flex gap-3 text-xs md:text-sm text-slate-300 leading-relaxed bg-navy-900/40 p-3 rounded-xl border border-navy-800/80">
                       <span className="font-bold text-indigo-400 shrink-0">#{index+1}</span>
                       <span>{pattern}</span>
                     </div>
