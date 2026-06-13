@@ -60,6 +60,12 @@ describe('storage.js Unit Tests', () => {
     expect(logs[0].analysis.score).toBe(2);
   });
 
+  it('should handle missing feelings and notes with default values in addMoodLog', () => {
+    const log = storage.addMoodLog(5);
+    expect(log.feelings).toEqual([]);
+    expect(log.notes).toBe('');
+  });
+
   it('should add and delete mock test exams', () => {
     // Isolate by clearing defaults
     localStorage.setItem('mindflow_exam_schedule', JSON.stringify([]));
@@ -108,5 +114,60 @@ describe('storage.js Unit Tests', () => {
     expect(localStorage.removeItem).toHaveBeenCalledWith('mindflow_exam_schedule');
     expect(localStorage.removeItem).toHaveBeenCalledWith('mindflow_chat_history');
     expect(localStorage.removeItem).toHaveBeenCalledWith('mindflow_disclaimer_dismissed');
+  });
+
+  it('should handle errors gracefully in localStorage catch blocks', () => {
+    const originalSetItem = localStorage.setItem;
+    const originalGetItem = localStorage.getItem;
+    const originalRemoveItem = localStorage.removeItem;
+    const originalGetMoodLogs = storage.getMoodLogs;
+    const originalGetExamSchedule = storage.getExamSchedule;
+    const originalGetChatHistory = storage.getChatHistory;
+
+    // Force localStorage methods to throw error
+    localStorage.setItem = vi.fn().mockImplementation(() => { throw new Error('Mock write error'); });
+    localStorage.getItem = vi.fn().mockImplementation(() => { throw new Error('Mock read error'); });
+    localStorage.removeItem = vi.fn().mockImplementation(() => { throw new Error('Mock remove error'); });
+
+    // Test catch blocks of read/write operations
+    expect(storage.getSettings()).toEqual({
+      userName: '',
+      age: '',
+      birthDate: '',
+      gender: '',
+      targetExam: 'JEE',
+      otherExam: '',
+      dailyReminder: '21:00',
+      theme: 'dark',
+      isOnboarded: false
+    });
+    expect(storage.saveSettings({})).toBe(false);
+    expect(storage.getMoodLogs()).toEqual([]);
+    expect(storage.saveMoodLogs([])).toBe(false);
+    expect(storage.getExamSchedule()).toEqual([]);
+    expect(storage.saveExamSchedule([])).toBe(false);
+    expect(storage.deleteExam('1')).toBe(true); // Returns true because it filters successfully even if write fails
+    expect(storage.getChatHistory()).toEqual([]);
+    expect(storage.saveChatHistory([])).toBe(false);
+    expect(storage.clearChatHistory()).toBe(false);
+    expect(storage.resetAll()).toBe(false);
+
+    // Force getters to return undefined so add/delete operations throw TypeError internally and trigger their catch blocks
+    storage.getMoodLogs = vi.fn().mockReturnValue(undefined);
+    storage.getExamSchedule = vi.fn().mockReturnValue(undefined);
+    storage.getChatHistory = vi.fn().mockReturnValue(undefined);
+
+    expect(storage.addMoodLog(5, [], 'Notes')).toBeNull();
+    expect(storage.addExam('Exam', '2026-06-15', 'Math')).toBeNull();
+    expect(storage.deleteExam('1')).toBe(false); // Throws TypeError because it tries to call filter on undefined
+    expect(storage.addChatMessage('user', 'msg')).toBeNull();
+
+    // Restore
+    localStorage.setItem = originalSetItem;
+    localStorage.getItem = originalGetItem;
+    localStorage.removeItem = originalRemoveItem;
+    storage.getMoodLogs = originalGetMoodLogs;
+    storage.getExamSchedule = originalGetExamSchedule;
+    storage.getChatHistory = originalGetChatHistory;
   });
 });
