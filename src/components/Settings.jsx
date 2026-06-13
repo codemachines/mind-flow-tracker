@@ -11,6 +11,7 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
   const [targetExam, setTargetExam] = useState(settings.targetExam);
   const [otherExam, setOtherExam] = useState(settings.otherExam || '');
   const [dailyReminder, setDailyReminder] = useState(settings.dailyReminder);
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem('mindflow_api_key') || '');
 
   // New Exam Form
   const [examTitle, setExamTitle] = useState('');
@@ -36,6 +37,7 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
       theme: 'dark',
       isOnboarded: true
     };
+    localStorage.setItem('mindflow_api_key', apiKey.trim());
     storage.saveSettings(updated);
     onSettingsChange(updated);
     setMessage('Profile settings saved successfully!');
@@ -214,6 +216,22 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
               </div>
             </div>
 
+            <div>
+              <label className="block text-xs font-semibold text-slate-400 uppercase tracking-wide mb-1.5">
+                Gemini API Key (Optional)
+              </label>
+              <input
+                type="password"
+                value={apiKey}
+                onChange={(e) => setApiKey(e.target.value)}
+                className="w-full px-4 py-2.5 rounded-xl glass-input text-sm text-slate-200"
+                placeholder="Enter Gemini API key to enable AI Therapist"
+              />
+              <p className="text-[10px] text-slate-500 mt-1">
+                Your key is stored locally in your browser and is never sent to any server except directly to Google Gemini.
+              </p>
+            </div>
+
             <button
               type="submit"
               className="w-full mt-4 bg-serene-500 hover:bg-serene-600 text-navy-950 font-bold py-2.5 rounded-xl transition-all duration-200 shadow-lg shadow-serene-500/10"
@@ -240,15 +258,15 @@ export default function Settings({ settings, onSettingsChange, exams, onExamsCha
                 <span className="font-semibold text-slate-200">Gemini 2.5 Flash API Connection:</span>
                 {isConfigured ? (
                   <span className="text-serene-400 font-medium flex items-center gap-1.5">
-                    ● Connected & Configured via Environment Variable.
+                    ● Connected & Configured.
                   </span>
                 ) : (
                   <span className="text-amber-400 font-medium flex items-center gap-1.5">
-                    ● Missing Environment Key. Currently using offline simulated AI.
+                    ● Offline simulated AI active.
                   </span>
                 )}
                 <p className="text-[11px] text-slate-400 mt-1">
-                  To configure the Gemini model, edit the `.env` file and set `VITE_GEMINI_API_KEY`.
+                  Enter your API key in the profile settings form to connect to Gemini 2.5 Flash.
                 </p>
               </div>
             </div>

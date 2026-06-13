@@ -29,6 +29,7 @@ export const storage = {
       localStorage.removeItem(KEYS.EXAM_SCHEDULE);
       localStorage.removeItem(KEYS.CHAT_HISTORY);
       localStorage.removeItem('mindflow_disclaimer_dismissed');
+      localStorage.removeItem('mindflow_api_key');
       return true;
     } catch (e) {
       console.error('Error resetting app data', e);

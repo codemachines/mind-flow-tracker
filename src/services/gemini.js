@@ -1,8 +1,18 @@
 // Google Gemini API integration with local mock therapist fallback
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Retrieve the API Key from import.meta.env
+// Retrieve the API Key from localStorage first, then import.meta.env
 const getApiKey = () => {
+  try {
+    if (typeof localStorage !== 'undefined') {
+      const localKey = localStorage.getItem('mindflow_api_key');
+      if (localKey && localKey.trim().length > 0) {
+        return localKey.trim();
+      }
+    }
+  } catch (e) {
+    console.error('Error reading API key from localStorage', e);
+  }
   return import.meta.env.VITE_GEMINI_API_KEY || '';
 };
 
